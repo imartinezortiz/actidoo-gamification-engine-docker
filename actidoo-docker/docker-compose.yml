@@ -1,0 +1,27 @@
+version: "3.2"
+services:
+  db:
+    image: postgres:9
+    restart: always
+    environment:
+      POSTGRES_USER: gengine
+      POSTGRES_PASSWORD: gengine
+      POSTGRES_DB: gengine
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+
+  memcached:
+    image: memcached
+
+  actidoo:
+     build: actidoo
+     depends_on:
+       - db
+       - memcached
+     command: ["/usr/local/bin/wait-for-it.sh", "db:5432", "--", "/usr/local/bin/docker-entrypoint.sh"]
+     ports:
+       - 8080:6543

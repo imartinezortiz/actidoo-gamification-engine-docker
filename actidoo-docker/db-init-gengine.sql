@@ -1,0 +1,3 @@
+CREATE USER gengine;
+CREATE DATABASE gengine;
+GRANT ALL PRIVILEGES ON DATABASE gengine TO gengine;
