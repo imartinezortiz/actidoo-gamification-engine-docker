@@ -18,7 +18,8 @@ services:
     image: memcached
 
   actidoo:
-     build: actidoo
+#     build: actidoo
+     image: imartinezortiz/actidoo-gamification-engine-docker
      depends_on:
        - db
        - memcached
